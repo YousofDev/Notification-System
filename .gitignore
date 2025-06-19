@@ -1,0 +1,21 @@
+# Logs
+logs/
+*.log
+
+# build folder
+dist
+
+# Dependency directories
+node_modules/
+
+# dotenv environment variable files
+.env
+.env.development.local
+.env.test.local
+.env.production.local
+.env.local
+
+# vscode settings
+.vscode
+
+
