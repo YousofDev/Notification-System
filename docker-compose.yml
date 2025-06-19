@@ -1,0 +1,38 @@
+version: "3.9"
+
+services:
+  app:
+    build: .
+    ports:
+      - "${PORT}:${PORT}"
+    restart: always
+    depends_on:
+      - mongo
+      - rabbitmq
+    env_file:
+      - .env
+    networks:
+      - backend
+
+  mongo:
+    image: mongo:6
+    restart: always
+    volumes:
+      - mongo_data:/data/db
+    networks:
+      - backend
+
+  rabbitmq:
+    image: rabbitmq:3-management
+    restart: always
+    ports:
+      - "15672:15672"
+      - "5672:5672"
+    networks:
+      - backend
+
+volumes:
+  mongo_data:
+
+networks:
+  backend:
