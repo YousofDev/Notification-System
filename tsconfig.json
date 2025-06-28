@@ -6,6 +6,8 @@
     "strictPropertyInitialization": false,
     "lib": ["es2017", "esnext.asynciterable"],
     "typeRoots": ["./node_modules/@types", "./src/types"],
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
     "allowSyntheticDefaultImports": true,
     "forceConsistentCasingInFileNames": true,
     "sourceMap": true,
@@ -34,6 +36,6 @@
     "skipLibCheck": true,
     "useUnknownInCatchVariables": false
   },
-  "include": ["src/**/*", "tests/**/*"],
+  "include": ["src/**/*", "tests/**/*", "src/templates/**/*"],
   "exclude": ["node_modules", "dist"]
 }

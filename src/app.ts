@@ -1,3 +1,4 @@
+import "reflect-metadata";
 import express from "express";
 import cors from "cors";
 import { corsOptions } from "@config/cors";
@@ -15,9 +16,8 @@ app.use(requestLogger);
 app.use(attachRequestContext);
 app.use(cors(corsOptions));
 
-app.use(apiKeyAuth);
-
 app.use("/health", healthRouter);
+app.use(apiKeyAuth);
 app.use("/api/v1/notifications", notificationsRouter);
 
 app.use(undefinedRouteHandler);

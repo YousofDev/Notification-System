@@ -13,8 +13,12 @@ export function errorHandler(
   const errorResponse =
     env.environment === "production"
       ? { error: "Internal Server Error" }
-      : { error: err.message, stack: err.stack };
+      : { error: err.message };
 
-  logger.error("❌ Error: " + err.message);
+  logger.error("❌ Error: ", {
+    errorMessage: err.message,
+    stack: err.stack,
+  });
+
   res.status(status).json(errorResponse);
 }

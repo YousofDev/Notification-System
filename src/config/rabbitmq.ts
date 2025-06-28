@@ -69,3 +69,4 @@ export async function closeRabbitMQ(): Promise<void> {
 export function isRabbitMQHealthy(): boolean {
   return isRabbitConnected && channel && channel.connection !== null;
 }
+

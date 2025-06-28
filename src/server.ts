@@ -3,7 +3,10 @@ import { closeSocket, initSocket } from "@config/socket";
 import env from "@config/env";
 import { closeRabbitMQ, initRabbitMQ } from "@config/rabbitmq";
 import { connectMongo, disconnectMongo } from "@config/mongodb";
-import { startEmailConsumer } from "@consumers/emailConsumer";
+import {
+  startEmailConsumer,
+  stopEmailConsumer,
+} from "@consumers/emailConsumer";
 import logger from "@utils/logger";
 import app from "src/app";
 
@@ -42,6 +45,7 @@ const shutdown = async () => {
     logger.info("🧱 HTTP server closed.");
 
     try {
+      await stopEmailConsumer();
       await disconnectMongo();
       await closeRabbitMQ();
       closeSocket();
