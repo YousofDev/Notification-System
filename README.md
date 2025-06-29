@@ -36,7 +36,7 @@ A scalable, and secure notification microservice built with **TypeScript**, **Ex
 - **Containerization**: Docker, Docker Compose
 - **CI/CD**: GitHub Actions
 - **Testing**: Jest, Supertest
-- **Security**: Helmet, mongo-sanitize, xss
+- **Security**: mongo-sanitize, xss, rate limiting, api key, cors origins
 - **Package Manager**: pnpm
 - **Other Tools**: ESLint, Prettier, ts-node-dev, tsc-alias
 
