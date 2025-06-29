@@ -8,7 +8,7 @@ const env = {
   port: process.env.PORT || 3000,
   logLevel: process.env.LOG_LEVEL || "info",
   corsOrigins:
-    process.env.CORS_ORIGINS || "http://localhost:3000,http://frontend.com",
+    process.env.CORS_ORIGINS || "http://localhost:3000,http://localhost:4000",
 
   smtp: {
     host: process.env.SMTP_HOST || "smtp.mailtrap.io",
