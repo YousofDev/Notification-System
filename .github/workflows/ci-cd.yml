@@ -70,8 +70,8 @@ jobs:
           NODE_ENV=${{ secrets.NODE_ENV }}
           LOG_LEVEL=${{ secrets.LOG_LEVEL }}
           CORS_ORIGINS=${{ secrets.CORS_ORIGINS }}
-          MONGO_URI=${{ secrets.MONGO_URI }}
-          RABBITMQ_URI=${{ secrets.RABBITMQ_URI }}
+          MONGO_URI=mongodb://localhost:27017/notifications_db
+          RABBITMQ_URI=amqp://guest:guest@localhost:5672
           API_KEYS=${{ secrets.API_KEYS }}
           SMTP_HOST=${{ secrets.SMTP_HOST }}
           SMTP_PORT=${{ secrets.SMTP_PORT }}
