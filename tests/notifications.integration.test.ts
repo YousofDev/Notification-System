@@ -23,7 +23,7 @@ describe("Notifications API", () => {
       .post("/api/v1/notifications/email")
       .set(headers)
       .send({
-        to: "yousofdevpro@gmail.com",
+        to: "egybright@gmail.com",
         subject: "Test Email",
         templateName: "test-email",
         data: { name: "Test" },
