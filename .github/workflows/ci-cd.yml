@@ -163,7 +163,6 @@ jobs:
         run: |
           echo "PORT=${{ secrets.PORT }}" > .env
           echo "NODE_ENV=${{ secrets.NODE_ENV }}" >> .env
-          echo "LOG_LEVEL=${{ secrets.LOG_LEVEL }}" >> .env
           echo "CORS_ORIGINS=${{ secrets.CORS_ORIGINS }}" >> .env
 
           echo "MONGO_URI=${{ secrets.MONGO_URI }}" >> .env
@@ -190,3 +189,27 @@ jobs:
           echo "WS_RATE_LIMIT_WINDOW_MS=${{ secrets.WS_RATE_LIMIT_WINDOW_MS }}" >> .env
 
           docker compose --env-file .env up -d
+          sleep 20
+
+
+      - name: Health check
+        run: |
+          max_attempts=5
+          attempt=1
+
+          while [ $attempt -le $max_attempts ]; do
+            echo "Health check attempt $attempt/$max_attempts"
+            
+            if curl -f http://0.0.0.0:${{ secrets.PORT }}/health; then
+              echo "✅ Application is healthy!"
+              exit 0
+            fi
+            
+            echo "❌ Health check failed, retrying in 10 seconds..."
+            sleep 10
+            attempt=$((attempt + 1))
+          done
+
+          echo "❌ Application failed to start after $max_attempts attempts"
+          docker compose logs app
+          exit 1
