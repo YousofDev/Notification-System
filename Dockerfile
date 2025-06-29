@@ -1,4 +1,5 @@
-FROM node:20-alpine
+# Use Node.js 18 Alpine as base image
+FROM node:18-alpine AS base
 
 # Install pnpm
 RUN npm install -g pnpm
@@ -18,9 +19,29 @@ COPY . .
 # Build the application
 RUN pnpm run build
 
-# ⚡️ HEALTHCHECK for docker
-HEALTHCHECK --interval=30s --timeout=5s --start-period=10s --retries=3 \
-  CMD wget -qO- http://localhost:3000/health || exit 1
+# Production stage
+FROM node:18-alpine AS production
 
-# Define the command to run the app
-CMD [ "pnpm", "start" ]
+# Install pnpm
+RUN npm install -g pnpm
+
+WORKDIR /app
+
+# Copy package files
+COPY package.json ./
+
+# Install only production dependencies
+RUN pnpm install
+
+# Copy built application from base stage
+COPY --from=base /app/dist ./dist
+
+# Set permissions for logs directory (using existing node user)
+RUN mkdir -p /app/logs && chown -R node:node /app/logs
+
+USER node
+
+EXPOSE 3000
+
+# Start the application
+CMD ["pnpm", "start"]
