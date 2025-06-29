@@ -1,6 +1,6 @@
 # Notification System
 
-A robust, scalable, and secure notification microservice built with **TypeScript**, **Express.js**, **MongoDB**, **RabbitMQ**, and **WebSocket** technologies. This system supports both email and WebSocket notifications, designed for seamless integration into microservices architectures. It includes rate-limiting, API key authentication, input sanitization, and a comprehensive CI/CD pipeline for automated testing and deployment.
+A scalable, and secure notification microservice built with **TypeScript**, **Express.js**, **MongoDB**, **RabbitMQ**, and **WebSocket** technologies. This system supports both email and WebSocket notifications, designed for seamless integration into microservices architectures. It includes rate-limiting, API key authentication, input sanitization, and a comprehensive CI/CD pipeline for automated testing and deployment.
 
 ---
 
