@@ -1,7 +1,7 @@
 import rateLimit from "express-rate-limit";
 import env from "@config/env";
 
-export const rateLimiterFactory = (type: "email" | "websocket") => {
+export const rateLimiter = (type: "email" | "websocket") => {
   const config = type === "email" ? env.emailRateLimit : env.websocketRateLimit;
 
   return rateLimit({

@@ -3,16 +3,12 @@ import {
   sendEmailHandler,
   sendWebSocketHandler,
 } from "@controllers/notificationController";
-import { rateLimiterFactory } from "@middleware/rateLimiter";
+import { rateLimiter } from "@middleware/rateLimiter";
 
 const router = Router();
 
-router.post("/email", rateLimiterFactory("email"), sendEmailHandler);
+router.post("/email", rateLimiter("email"), sendEmailHandler);
 
-router.post(
-  "/websocket",
-  rateLimiterFactory("websocket"),
-  sendWebSocketHandler
-);
+router.post("/websocket", rateLimiter("websocket"), sendWebSocketHandler);
 
 export default router;
